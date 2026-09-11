@@ -60,46 +60,67 @@ function TripPlanner() {
   }
 
   function validateForm() {
-    const destination = form.destination.trim()
-    const days = Number(form.days)
-    const budget = Number(form.budget)
-    const travellers = Number(form.travellers)
-    const interests = form.interests.trim()
+  const destination = form.destination.trim()
+  const days = Number(form.days)
+  const budget = Number(form.budget)
+  const travellers = Number(form.travellers)
+  const interests = form.interests.trim()
 
-    if (!destination || !form.days || !form.budget || !form.travellers) {
-      return 'Please fill all required trip details'
-    }
-
-    if (destination.length > 100) {
-      return 'Destination must be 100 characters or less'
-    }
-
-    if (interests.length > 200) {
-      return 'Interests must be 200 characters or less'
-    }
-
-    if (!Number.isInteger(days) || days < 1 || days > 14) {
-      return 'Number of days must be between 1 and 14'
-    }
-
-    if (!Number.isFinite(budget) || budget <= 0) {
-      return 'Please enter a valid budget greater than ₹0'
-    }
-
-    if (budget > 10000000) {
-      return 'Budget cannot be more than ₹1 crore'
-    }
-
-    if (
-      !Number.isInteger(travellers) ||
-      travellers < 1 ||
-      travellers > 20
-    ) {
-      return 'Number of travellers must be between 1 and 20'
-    }
-
-    return ''
+  if (!destination || !form.days || !form.budget || !form.travellers) {
+    return 'Please fill all required trip details'
   }
+
+  if (destination.length > 100) {
+    return 'Destination must be 100 characters or less'
+  }
+
+  if (interests.length > 200) {
+    return 'Interests must be 200 characters or less'
+  }
+
+  if (!Number.isInteger(days) || days < 1 || days > 14) {
+    return 'Number of days must be between 1 and 14'
+  }
+
+  if (!Number.isFinite(budget) || budget <= 0) {
+    return 'Please enter a valid budget greater than ₹0'
+  }
+
+  if (budget > 10000000) {
+    return 'Budget cannot be more than ₹1 crore'
+  }
+
+  if (
+    !Number.isInteger(travellers) ||
+    travellers < 1 ||
+    travellers > 20
+  ) {
+    return 'Number of travellers must be between 1 and 20'
+  }
+
+  if (interests) {
+    const allowedInterests = INTEREST_OPTIONS.map((item) =>
+      item.toLowerCase()
+    )
+
+    const enteredInterests = interests
+      .split(',')
+      .map((item) => item.trim().toLowerCase())
+      .filter(Boolean)
+
+    const invalidInterests = enteredInterests.filter(
+      (interest) => !allowedInterests.includes(interest)
+    )
+
+    if (invalidInterests.length > 0) {
+      return `Invalid interest: ${invalidInterests.join(
+        ', '
+      )}. Please select an interest from the available options.`
+    }
+  }
+
+  return ''
+}
 
   async function handlePlan(e) {
     e.preventDefault()
