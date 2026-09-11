@@ -4,17 +4,14 @@ A responsive web application built with **React + Vite** that allows users to ex
 
 ## 🚀 Features
 
-* 🌎 Browse countries from around the world
-* 🔍 Search countries by name
-* 🗺️ Filter countries by region
-* 🏳️ Display country flags
-* 👥 View population information
-* 🏛️ View capital cities
-* 💰 View currencies
-* 🗣️ View languages
-* 📱 Responsive design for desktop and mobile
-* ⚡ Fast development using Vite
-* 🎨 Clean and user-friendly interface
+🌍 Country Explorer
+⚖️ Country Comparison
+🤖 AI Trip Planner
+🔐 Login/Register
+💾 MongoDB
+📋 My Trips
+✅ Trip activity tracking
+
 
 ## 🛠️ Technologies Used
 
